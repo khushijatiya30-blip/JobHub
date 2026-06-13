@@ -135,14 +135,156 @@ INSERT IGNORE INTO users (email, password, role) VALUES
  'ADMIN');
 
 -- Sample skills
-INSERT IGNORE INTO skills (name, category) VALUES
-('Java','Programming Language'),('Python','Programming Language'),
-('JavaScript','Programming Language'),('React','Framework'),
-('Spring Boot','Framework'),('MySQL','Database'),('MongoDB','Database'),
-('AWS','Cloud'),('Docker','DevOps'),('Git','DevOps'),
-('Machine Learning','Data Science'),('HTML/CSS','Web Development'),
-('Node.js','Framework'),('TypeScript','Programming Language'),
-('REST APIs','Web Development');
+INSERT INTO skills(skill_name, category) VALUES
+
+-- Programming Languages
+('Java','Programming Language'),
+('Python','Programming Language'),
+('JavaScript','Programming Language'),
+('TypeScript','Programming Language'),
+('C','Programming Language'),
+('C++','Programming Language'),
+('C#','Programming Language'),
+('PHP','Programming Language'),
+('Ruby','Programming Language'),
+('Go','Programming Language'),
+('Rust','Programming Language'),
+('Kotlin','Programming Language'),
+('Swift','Programming Language'),
+('Dart','Programming Language'),
+('R','Programming Language'),
+('Scala','Programming Language'),
+('Perl','Programming Language'),
+('Shell Scripting','Programming Language'),
+
+-- Frontend
+('HTML','Web Development'),
+('CSS','Web Development'),
+('Bootstrap','Web Development'),
+('Tailwind CSS','Web Development'),
+('SASS','Web Development'),
+('React','Framework'),
+('Angular','Framework'),
+('Vue.js','Framework'),
+('Next.js','Framework'),
+('Redux','Framework'),
+('jQuery','Framework'),
+
+-- Backend
+('Spring Boot','Framework'),
+('Spring MVC','Framework'),
+('Spring Security','Framework'),
+('Hibernate','Framework'),
+('JPA','Framework'),
+('Node.js','Framework'),
+('Express.js','Framework'),
+('Django','Framework'),
+('Flask','Framework'),
+('FastAPI','Framework'),
+('Laravel','Framework'),
+('CodeIgniter','Framework'),
+('ASP.NET Core','Framework'),
+
+-- Databases
+('MySQL','Database'),
+('PostgreSQL','Database'),
+('MongoDB','Database'),
+('Oracle Database','Database'),
+('Microsoft SQL Server','Database'),
+('SQLite','Database'),
+('Redis','Database'),
+('MariaDB','Database'),
+('Firebase','Database'),
+('Cassandra','Database'),
+
+-- Cloud
+('AWS','Cloud'),
+('Microsoft Azure','Cloud'),
+('Google Cloud Platform','Cloud'),
+('DigitalOcean','Cloud'),
+('Heroku','Cloud'),
+('Railway','Cloud'),
+('Vercel','Cloud'),
+('Netlify','Cloud'),
+
+-- DevOps
+('Git','DevOps'),
+('GitHub','DevOps'),
+('GitLab','DevOps'),
+('Docker','DevOps'),
+('Kubernetes','DevOps'),
+('Jenkins','DevOps'),
+('GitHub Actions','DevOps'),
+('CI/CD','DevOps'),
+('Terraform','DevOps'),
+('Ansible','DevOps'),
+
+-- Data Science & AI
+('Machine Learning','Data Science'),
+('Deep Learning','Data Science'),
+('Data Analysis','Data Science'),
+('Data Visualization','Data Science'),
+('TensorFlow','Data Science'),
+('PyTorch','Data Science'),
+('Pandas','Data Science'),
+('NumPy','Data Science'),
+('Scikit-Learn','Data Science'),
+('OpenCV','Data Science'),
+('Natural Language Processing','Data Science'),
+('Generative AI','Data Science'),
+
+-- Mobile Development
+('Android Development','Mobile'),
+('iOS Development','Mobile'),
+('Flutter','Mobile'),
+('React Native','Mobile'),
+('Kotlin Android','Mobile'),
+('SwiftUI','Mobile'),
+
+-- Testing
+('JUnit','Testing'),
+('Mockito','Testing'),
+('Selenium','Testing'),
+('Postman','Testing'),
+('Cypress','Testing'),
+('Manual Testing','Testing'),
+('API Testing','Testing'),
+
+-- APIs
+('REST APIs','Web Development'),
+('GraphQL','Web Development'),
+('Microservices','Architecture'),
+('SOAP','Web Development'),
+
+-- Tools
+('Eclipse','Tools'),
+('IntelliJ IDEA','Tools'),
+('VS Code','Tools'),
+('Maven','Tools'),
+('Gradle','Tools'),
+('Webpack','Tools'),
+('NPM','Tools'),
+
+-- Cyber Security
+('Network Security','Security'),
+('Ethical Hacking','Security'),
+('Penetration Testing','Security'),
+('OWASP','Security'),
+
+-- Business & Management
+('Agile','Management'),
+('Scrum','Management'),
+('Project Management','Management'),
+('JIRA','Management'),
+
+-- Soft Skills
+('Communication','Soft Skill'),
+('Leadership','Soft Skill'),
+('Problem Solving','Soft Skill'),
+('Teamwork','Soft Skill'),
+('Time Management','Soft Skill'),
+('Critical Thinking','Soft Skill'),
+('Presentation Skills','Soft Skill');
 
 -- ── Useful Queries ─────────────────────────────────────────
 
