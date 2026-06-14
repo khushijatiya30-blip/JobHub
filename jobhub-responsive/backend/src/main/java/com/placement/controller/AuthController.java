@@ -1,10 +1,19 @@
 package com.placement.controller;
 
-import com.placement.dto.*;
-import com.placement.service.AuthService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.placement.dto.ApiResponse;
+import com.placement.dto.AuthResponse;
+import com.placement.dto.CompanyRegisterRequest;
+import com.placement.dto.LoginRequest;
+import com.placement.dto.StudentRegisterRequest;
+import com.placement.service.AuthService;
+
+import jakarta.validation.Valid;
 
 /**
  * Auth Controller — register & login endpoints (public)

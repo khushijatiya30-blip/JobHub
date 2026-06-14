@@ -14,7 +14,9 @@ public class CorsConfige {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://job-hub-cc5e.vercel.app")
+                        .allowedOrigins(
+                                "https://job-hub-cc5e.vercel.app"
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }
