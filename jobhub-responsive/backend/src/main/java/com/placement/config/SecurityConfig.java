@@ -1,5 +1,8 @@
 package com.placement.config;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,9 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -37,33 +37,36 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
             .authorizeHttpRequests(auth -> auth
-                // ✅ FIX 2: /api/auth/** bilkul public hona chahiye — koi bhi login/register kar sake
+
+                // 🔓 Public APIs (IMPORTANT)
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/jobs").permitAll()
+
                 .requestMatchers(HttpMethod.GET, "/api/jobs/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/skills").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/skills/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
-                // ✅ FIX 3: OPTIONS preflight request ko permit karo (CORS ke liye zaruri)
+
+                // 🔓 Preflight request
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                // 🔐 Role based access
                 .requestMatchers("/api/student/**").hasRole("STUDENT")
-                .requestMatchers("/api/apply/**").hasRole("STUDENT")
-                .requestMatchers("/api/apply").hasRole("STUDENT")
                 .requestMatchers("/api/company/**").hasRole("COMPANY")
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter,
@@ -74,22 +77,34 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration config = new CorsConfiguration();
-        // ✅ FIX 4: Sirf localhost:3000 tha — 3001 aur 127.0.0.1 bhi add kiye
+
+        // 🌐 FRONTEND URL (IMPORTANT FIX)
         config.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://127.0.0.1:3000",
-            "http://127.0.0.1:3001"
+            "https://job-hub-cc5e.vercel.app",
+            "http://localhost:3000"
         ));
-        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
-        // ✅ FIX 5: Accept header missing tha — add kiya
-        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type","X-Requested-With","Accept","Origin"));
+
+        config.setAllowedMethods(Arrays.asList(
+            "GET","POST","PUT","DELETE","OPTIONS"
+        ));
+
+        config.setAllowedHeaders(Arrays.asList(
+            "Authorization",
+            "Content-Type",
+            "X-Requested-With",
+            "Accept",
+            "Origin"
+        ));
+
         config.setExposedHeaders(List.of("Authorization"));
         config.setAllowCredentials(true);
         config.setMaxAge(3600L);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 }
