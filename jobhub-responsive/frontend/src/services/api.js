@@ -2,14 +2,14 @@ import axios from 'axios';
 
 // Backend base URL - API calls ke liye proxy use hoga
 const api = axios.create({
-  baseURL: '',
+  baseURL: 'https://jobhub-7.onrender.com',
   headers: { 'Content-Type': 'application/json' },
 });
 
 // ✅ BACKEND URL - file links ke liye direct backend use karo
 // React proxy HTML requests forward nahi karta (Accept: text/html issue)
 // Isliye files ka direct link banana zaroori hai
-export const BACKEND_URL = 'http://localhost:8080';
+export const BACKEND_URL = 'https://jobhub-7.onrender.com';
 
 // File URL builder - ALWAYS returns full absolute URL pointing to backend
 export const getFileUrl = (path) => {
